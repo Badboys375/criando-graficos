@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Dados - Criando Narrativas com Gráficos</title>
+    <!-- Link para o CSS -->
+    <link rel="stylesheet" href="index.html">
+    <!-- Link para o Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Análise de Dados: Criando Narrativas com Gráficos</h1>
+        <p>Exploração dos dados de vendas ao longo do ano e análise de tendências de crescimento.</p>
+    </header>
+
+    <section class="charts">
+        <div class="chart-container">
+            <h2>Gráfico de Vendas (Barras)</h2>
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h2>Variação de Crescimento Mensal (Linha)</h2>
+            <canvas id="lineChart"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Análise de Dados | Desenvolvido por ChatGPT</p>
+    </footer>
+
+    <script>
+        // Dados para o gráfico de barras
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Vendas (em unidades)',
+                    data: [150, 200, 180, 210, 250, 220, 280, 300, 330, 360, 400, 450],
+                    backgroundColor: '#4CAF50',
+                    borderColor: '#388E3C',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Dados para o gráfico de linha
+        const ctxLine = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Crescimento Mensal (%)',
+                    data: [5, 6, 7, 8, 9, 10, 8, 9, 11, 12, 13, 15],
+                    borderColor: '#FF9800',
+                    tension: 0.1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
